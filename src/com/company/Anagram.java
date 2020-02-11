@@ -16,19 +16,17 @@ public class Anagram {
 
     private static String processWord(String text) {
         char[] characters = text.toCharArray();
-
-        for (int i = 0, j= characters.length; i < j; i++) {
-            if (! Character.isLetter(characters[i])) {
-                continue;
+        int left = 0;
+        int right = characters.length - 1;
+        while (left < right) {
+            if (! Character.isLetter(characters[left])) {
+                left++;
+            } else if (! Character.isLetter(characters[right])) {
+                right--;
             } else {
-                for(j-- ; i < j; j--) {
-                    if (! Character.isLetter(characters[j])) {
-                        continue;
-                    } else {
-                        swapCharacters(characters, i, j);
-                        break;
-                    }
-                }
+                swapCharacters(characters, left, right);
+                left++;
+                right--;
             }
         }
         return String.copyValueOf(characters);
