@@ -1,18 +1,37 @@
 package com.company;
 
+import java.util.StringJoiner;
+
 public class Anagram {
     public static String process(String text) {
+        String delimiter = " ";
+        StringJoiner result = new StringJoiner(delimiter);
+
+        for (String word : text.split(delimiter)) {
+            result.add(processWord(word));
+        }
+
+        return result.toString();
+    }
+
+    private static String processWord(String text) {
         char[] characters = text.toCharArray();
-        int numOfChars = characters.length;
-        for (int i = 0; i < numOfChars / 2; i++) {
-            if (areBothCharacters(characters, i, numOfChars - 1 - i)) {
-                swapCharacters(characters, i, numOfChars - 1 - i);
+
+        for (int i = 0, j= characters.length; i < j; i++) {
+            if (! Character.isLetter(characters[i])) {
+                continue;
+            } else {
+                for(j-- ; i < j; j--) {
+                    if (! Character.isLetter(characters[j])) {
+                        continue;
+                    } else {
+                        swapCharacters(characters, i, j);
+                        break;
+                    }
+                }
             }
         }
         return String.copyValueOf(characters);
-    }
-    private static boolean areBothCharacters(char[] characters, int position1, int position2) {
-        return Character.isLetter(characters[position1]) && Character.isLetter(characters[position2]);
     }
 
     private static void swapCharacters(char[] characters, int position1, int position2) {
