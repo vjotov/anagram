@@ -1,11 +1,22 @@
 package com.company;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.function.Executable;
+
+import java.lang.reflect.Method;
 
 import static org.hamcrest.Matchers.hasProperty;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AnagramTest {
+    @Test
+    void methodExistTest () {
+        Class[] cArg = new Class[1];
+        cArg[0] = String.class;
+
+        assertAll((Executable) () -> Anagram.class.getMethod("process", cArg));
+
+    }
     @Test
     void nullValueTest() {
         assertEquals(Anagram.process(null),"");
