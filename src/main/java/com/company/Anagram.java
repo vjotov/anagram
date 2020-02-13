@@ -4,6 +4,9 @@ import java.util.StringJoiner;
 
 public class Anagram {
     public static String process(String text) {
+        if(text == null)
+            return "";
+
         String delimiter = " ";
         StringJoiner result = new StringJoiner(delimiter);
 
