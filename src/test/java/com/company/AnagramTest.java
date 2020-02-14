@@ -4,11 +4,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import static org.hamcrest.Matchers.hasProperty;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class AnagramTest {
     @Test
     void nullValueTest() {
-        assertEquals(Anagram.process(null),"");
+        assertThrows(IllegalArgumentException.class, () -> {Anagram.process(null);});
     }
 
     @Test

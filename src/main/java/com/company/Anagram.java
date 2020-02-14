@@ -4,8 +4,9 @@ import java.util.StringJoiner;
 
 public class Anagram {
     public static String process(String text) {
-        if(text == null)
-            return "";
+        if(text == null) {
+            throw new IllegalArgumentException("text can't be null");
+        }
 
         String delimiter = " ";
         StringJoiner result = new StringJoiner(delimiter);
